@@ -1,0 +1,41 @@
+.auth-page {
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 50vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 650px)
+{
+  .just-pc
+   {
+    display: none !important;
+   }
+}
+
+@media (min-width: 651px)
+{
+  .just-cel
+   {
+    display: none !important;
+   }
+}
+
+
+.select2-container{
+  width: 100% !important
+}
+
+.display-none{
+  display: none !important;
+}
+
+.modal {
+  overflow-y:auto !important;
+}
