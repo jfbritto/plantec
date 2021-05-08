@@ -41,7 +41,7 @@ $(document).ready(function () {
 
                                     $("#list").append(`
                                         <tr>
-                                            <td class="align-middle text-center" colspan="2">Nenhuma espécie cadastrada</td>
+                                            <td class="align-middle text-center" colspan="3">Nenhuma espécie cadastrada</td>
                                         </tr>
                                     `);  
                                 }
