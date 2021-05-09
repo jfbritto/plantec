@@ -1,7 +1,13 @@
 $(document).ready(function () {
 
-    loadPlantations();
-    loadSpecie();
+    loadAll();
+
+    function loadAll()
+    {
+        loadPlantations();
+        loadSpecie();
+        loadClients();
+    }
 
     // LISTAR PLANTÉIS
     function loadPlantations()
@@ -34,6 +40,7 @@ $(document).ready(function () {
                                                 <td class="align-middle">${dateFormat(item.end_time)}</td>
                                                 <td class="align-middle">${item.description}</td>
                                                 <td class="align-middle" style="text-align: right">
+                                                    <a title="Vendas" data-id="${item.id}" data-id_specie="${item.id_specie}" data-quantity="${item.quantity}" data-start_time="${item.start_time}" data-end_time="${item.end_time}" data-status="${item.status}" data-description="${item.description}" data-specie_name="${item.specie_name}" href="#" class="btn btn-success list-sales"><i style="color: white" class="fas fa-shopping-cart"></i></a>
                                                     <a title="Editar" data-id="${item.id}" data-id_specie="${item.id_specie}" data-quantity="${item.quantity}" data-start_time="${item.start_time}" data-end_time="${item.end_time}" data-status="${item.status}" data-description="${item.description}"  href="#" class="btn btn-warning edit-plantation"><i style="color: white" class="fas fa-edit"></i></a>
                                                     <a title="Deletar" data-id="${item.id}" href="#" class="btn btn-danger delete-plantation"><i class="fas fa-trash-alt"></i></a>
                                                 </td>
@@ -111,6 +118,49 @@ $(document).ready(function () {
         ]);
     }
 
+    // LISTAR CLIENTES
+    function loadClients()
+    {
+        Swal.queue([
+            {
+                title: "Carregando...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.get(window.location.origin + "/clientes/listar", {
+                        
+                    })
+                        .then(function (data) {
+                            if (data.status == "success") {
+
+                                Swal.close();
+
+                                $("#id_client").html(``);
+                                $("#id_client").html(`<option value="">-- Selecione --</option>`);
+
+                                if(data.data.length > 0){
+
+                                    data.data.forEach(item => { 
+                                        $("#id_client").append(`
+                                            <option value="${item.id}">${item.name} - ${item.city}</option>
+                                        `)
+                                    });
+
+                                }
+
+                                $("#id_client").select2()
+
+                            } else if (data.status == "error") {
+                                showError(data.message)
+                            }
+                        })
+                        .catch();
+                },
+            },
+        ]);
+    }
+
 
     // CADASTRAR PLANTEL
     $("#formStorePlantation").submit(function (e) {
@@ -140,7 +190,7 @@ $(document).ready(function () {
                                 
                                 $("#modalStorePlantation").modal("hide");
 
-                                showSuccess("Cadastro efetuado!", null, loadPlantations)
+                                showSuccess("Cadastro efetuado!", null, loadAll)
                             } else if (data.status == "error") {
                                 showError(data.message)
                             }
@@ -198,7 +248,7 @@ $(document).ready(function () {
                                 
                                 $("#modalEditPlantation").modal("hide");
 
-                                showSuccess("Edição efetuada!", null, loadPlantations)
+                                showSuccess("Edição efetuada!", null, loadAll)
                             } else if (data.status == "error") {
                                 showError(data.message)
                             }
@@ -242,7 +292,7 @@ $(document).ready(function () {
                                     .then(function (data) {
                                         if (data.status == "success") {
                                                         
-                                            showSuccess("Deletado com sucesso!", null, loadPlantations)
+                                            showSuccess("Deletado com sucesso!", null, loadAll)
                                         } else if (data.status == "error") {
                                             showError(data.message)
                                         }
@@ -256,6 +306,159 @@ $(document).ready(function () {
             })
 
     });
+
+    // CADASTRAR VENDA
+    $("#formAddSales").submit(function (e) {
+        e.preventDefault();
+
+        Swal.queue([
+            {
+                title: "Carregando...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+
+                    $.post(window.location.origin + "/vendas/cadastrar", {
+                        id_plantation: $("#id_plantation_add").val(),
+                        id_client: $("#id_client option:selected").val(),
+                        quantity: $("#quantity_sale").val(),
+                        price: $("#price").val(),
+                        description: $("#description_sale").val(),
+                    })
+                        .then(function (data) {
+                            if (data.status == "success") {
+
+                                $("#formAddSales").each(function () {
+                                    this.reset();
+                                });
+                                
+                                $("#modalAddSales").modal("hide");
+
+                                showSuccess("Cadastro efetuado!", null, loadSales, $("#id_plantation_add").val())
+                            } else if (data.status == "error") {
+                                showError(data.message)
+                            }
+                        })
+                        .catch();
+
+                },
+            },
+        ]);
+
+    });
+
+    // LISTAR VENDAS
+    $("#list").on("click", ".list-sales", function(){
+
+        $("#id_plantation_add").val($(this).data('id'));
+        $("#title-plantation").html($(this).data('specie_name'));
+
+        loadSales($(this).data('id'))
+
+        $("#modalSales").modal("show");
+    });
+
+    // LISTAR VENDAS
+    function loadSales(id_plantation)
+    {
+        Swal.queue([
+            {
+                title: "Carregando...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.get(window.location.origin + "/vendas/listar-por-plantel", {
+                        id_plantation:id_plantation
+                    })
+                        .then(function (data) {
+                            if (data.status == "success") {
+
+                                Swal.close();
+                                $("#list-sales").html(``);
+
+                                if(data.data.length > 0){
+                                    
+                                    data.data.forEach(item => {
+
+                                        $("#list-sales").append(`
+                                            <tr>
+                                                <td class="align-middle">${item.client_name}</td>
+                                                <td class="align-middle">${item.quantity}</td>
+                                                <td class="align-middle">R$ ${moneyFormat(item.price)}</td>
+                                                <td class="align-middle" style="text-align: right">
+                                                    <a title="Deletar" data-id="${item.id}" data-id_plantation="${item.id_plantation}" href="#" class="btn btn-danger delete-sale"><i class="fas fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        `);       
+                                    });
+
+                                }else{
+
+                                    $("#list-sales").append(`
+                                        <tr>
+                                            <td class="align-middle text-center" colspan="6">Nenhuma venda cadastrada</td>
+                                        </tr>
+                                    `);  
+                                }
+
+                            } else if (data.status == "error") {
+                                showError(data.message)
+                            }
+                        })
+                        .catch();
+                },
+            },
+        ]);
+    }
     
+    // "DELETAR" VENDA
+    $("#list-sales").on("click", ".delete-sale", function(){
+        
+        let id = $(this).data('id');
+        let id_plantation = $(this).data('id_plantation');
+
+        Swal.fire({
+            title: 'Atenção!',
+            text: "Deseja realmente deletar?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Sim',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.value) {
+
+                    Swal.queue([
+                        {
+                            title: "Carregando...",
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                $.ajax({
+                                    url: window.location.origin + "/vendas/deletar",
+                                    type: 'DELETE',
+                                    data: {id}
+                                })
+                                    .then(function (data) {
+                                        if (data.status == "success") {
+                                                        
+                                            showSuccess("Deletado com sucesso!", null, loadSales, id_plantation)
+                                        } else if (data.status == "error") {
+                                            showError(data.message)
+                                        }
+                                    })
+                                    .catch();
+                            },
+                        },
+                    ]);
+
+                }
+            })
+
+    });
 
 });

@@ -151,6 +151,91 @@
         </div>
     </div>
 
+    <div class="modal fade" role="dialog" id="modalSales">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vendas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <h5 class="font-weight-bold mb-4">
+                    <span id="title-plantation"></span>
+                    <span class="pull-right"><button type="button" class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#modalAddSales">Adicionar Venda</button></span>
+                </h5>
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-sales"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="id_plantation_add" value="">
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalAddSales">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Venda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="formAddSales">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="id_client">Cliente</label>
+                                <select required name="id_client" id="id_client" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="quantity_sale">Quantidade</label>
+                                <input type="number" required name="quantity_sale" id="quantity_sale" class="form-control" placeholder="Informe a quantidade">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="price">Valor</label>
+                                <input type="text" required name="price" id="price" class="form-control money" placeholder="Informe o valor">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description_sale">Observação</label>
+                                <textarea name="description_sale" id="description_sale" class="form-control" cols="30" rows="5" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="formAddSales">Salvar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('js')

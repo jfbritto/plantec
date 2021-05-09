@@ -334,7 +334,7 @@ return [
         ],
 
 
-        // ['header' => 'FINANCEIRO'],
+        ['header' => 'FINANCEIRO'],
         // [
         //     'text'       => 'Entradas',
         //     'icon'       => 'fas fa-fw fa-comment-dollar' ,
@@ -342,20 +342,20 @@ return [
         //     'url'        => 'entradas',
         //     'can'        => 'admin',
         // ],
-        // [
-        //     'text'       => 'Despesas',
-        //     'icon'       => 'fas fa-fw fa-comment-dollar' ,
-        //     // 'icon_color' => 'red',
-        //     'url'        => 'despesas',
-        //     'can'        => 'admin',
-        // ],
-        // [
-        //     'text'       => 'Centro de custo',
-        //     'icon'       => 'fas fa-fw fa-file-signature' ,
-        //     // 'icon_color' => 'green',
-        //     'url'        => 'centros-de-custo',
-        //     'can'        => 'admin',
-        // ],
+        [
+            'text'       => 'Despesas',
+            'icon'       => 'fas fa-fw fa-comment-dollar' ,
+            // 'icon_color' => 'red',
+            'url'        => 'despesas',
+            'can'        => 'admin',
+        ],
+        [
+            'text'       => 'Centro de custo',
+            'icon'       => 'fas fa-fw fa-file-signature' ,
+            // 'icon_color' => 'green',
+            'url'        => 'centros-de-custo',
+            'can'        => 'admin',
+        ],
 
         // ['header' => 'OUTROS'],
         // [

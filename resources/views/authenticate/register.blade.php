@@ -11,9 +11,9 @@
 <div class="auth-page">
 
 	<div class="login-box">
-		<div class="card card-outline card-primary">
+		<div class="card card-outline card-success">
 			<div class="card-header text-center">
-				<a href="../../index2.html" class="h1"><b>Vini</b>Tennis</a>
+				<a href="../../index2.html" class="h1"><b>Plan</b>Tec</a>
 			</div>
 			<div class="card-body">
 
@@ -44,7 +44,7 @@
 					</div>
 					<div class="row">
 						<div class="col-12">
-							<button type="submit" class="btn btn-primary btn-block" form="formStoreUser">Cadastrar</button>
+							<button type="submit" class="btn btn-success btn-block" form="formStoreUser">Cadastrar</button>
 						</div>
 					</div>
 				</form>

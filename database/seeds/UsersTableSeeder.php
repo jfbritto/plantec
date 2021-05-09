@@ -18,9 +18,9 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'id_company' => 1,
-                'name' => 'João Filipi',
-                'email' => 'jf.britto@hotmail.com',
-                'password' => '$2y$10$MERsmHSH/CSZE73uJP4UauxslHssbmmFRdW9yePX0oSABX98HPFny',
+                'name' => 'PlanTec',
+                'email' => 'viveiroplantec@hotmail.com',
+                'password' => bcrypt('dihegoluiz2021'),
                 'group' => 1,
                 'status' => 'A',
                 'birth' => NULL,
@@ -41,3 +41,6 @@ class UsersTableSeeder extends Seeder
         ));
     }
 }
+
+// crypt('dihegoluiz2021')
+// '$2y$10$MERsmHSH/CSZE73uJP4UauxslHssbmmFRdW9yePX0oSABX98HPFny'

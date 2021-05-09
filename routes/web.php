@@ -42,66 +42,18 @@ Route::group(['middleware' => ['admin']], function(){
     Route::put('/planteis/editar', 'PlantationController@update');
     Route::delete('/planteis/deletar', 'PlantationController@destroy');
 
+    //vendas
+    Route::get('/vendas', 'SaleController@index');
+    Route::get('/vendas/listar', 'SaleController@list');
+    Route::get('/vendas/listar-por-plantel', 'SaleController@listByPlantation');
+    Route::get('/vendas/listar-por-cliente', 'SaleController@listByClient');
+    Route::post('/vendas/cadastrar', 'SaleController@store');
+    Route::put('/vendas/editar', 'SaleController@update');
+    Route::delete('/vendas/deletar', 'SaleController@destroy');
 
 
 
-    //dias disponiveis
-    Route::get('/datas-disponiveis/listar/{id}', 'AvailableDateController@list');
-    Route::post('/datas-disponiveis/cadastrar', 'AvailableDateController@store');
-    Route::delete('/datas-disponiveis/deletar', 'AvailableDateController@destroy');
 
-    //reservas
-    Route::get('/reservas', 'ReservationController@index');
-    Route::get('/reservas/listar', 'ReservationController@list');
-    Route::put('/reservas/change-status', 'ReservationController@changeStatus');
-
-    // contratos
-    Route::get('/contratos/listar/{id_student}', 'ContractController@list');
-    Route::post('/contratos/cadastrar', 'ContractController@store');
-    Route::delete('/contratos/cancelar', 'ContractController@destroy');
-    
-    // faturas
-    Route::get('/faturas/listar/{id_student}', 'InvoiceController@listNextOpen');
-    Route::get('/faturas/listar-entradas-por-mes', 'InvoiceController@listReceivedByMonth');
-    Route::put('/faturas/receber', 'InvoiceController@receive');
-    
-    // planos
-    Route::get('/planos', 'PlanController@index');
-    Route::get('/planos/listar', 'PlanController@list');
-    Route::post('/planos/cadastrar', 'PlanController@store');
-    Route::put('/planos/editar', 'PlanController@update');
-    Route::delete('/planos/deletar', 'PlanController@destroy');
-
-    // aulas programadas
-    Route::get('/aulas-programadas', 'ScheduledClassesController@index');
-    Route::get('/aulas-programadas/listar/{id}', 'ScheduledClassesController@list');
-    Route::get('/aulas-programadas/buscar', 'ScheduledClassesController@search');
-    Route::post('/aulas-programadas/cadastrar', 'ScheduledClassesController@store');
-    Route::delete('/aulas-programadas/deletar', 'ScheduledClassesController@destroy');
-    
-    // aulas programadas resultado
-    Route::get('/aulas-programadas-resultado/listar/{id}', 'ScheduledClassesResultController@list');
-    Route::post('/aulas-programadas-resultado/cadastrar', 'ScheduledClassesResultController@store');
-
-    
-
-    //responsáveis
-    Route::get('/responsaveis', 'UserController@responsible');
-    Route::post('/responsaveis/cadastrar', 'UserController@storeResponsible');
-    Route::get('/responsaveis/listar', 'UserController@listResponsible');
-    Route::put('/responsaveis/editar', 'UserController@updateResponsible');
-    Route::delete('/responsaveis/deletar', 'UserController@destroy');
-
-    //funcionarios
-    Route::get('/funcionarios', 'UserController@employee');
-    Route::post('/funcionarios/cadastrar', 'UserController@storeEmployee');
-    Route::get('/funcionarios/listar', 'UserController@listEmployee');
-    Route::put('/funcionarios/editar', 'UserController@updateEmployee');
-    Route::delete('/funcionarios/deletar', 'UserController@destroy');
-
-    // entradas
-    Route::get('/entradas', 'EntryController@index');
-    Route::get('/entradas/listar', 'EntryController@list');
 
     // despesas
     Route::get('/despesas', 'ExpenseController@index');
@@ -120,18 +72,6 @@ Route::group(['middleware' => ['admin']], function(){
     Route::get('/subtipos-de-centros-de-custo/listar', 'CostCenterSubtypeController@list');
     Route::post('/subtipos-de-centros-de-custo/cadastrar', 'CostCenterSubtypeController@store');
     Route::delete('/subtipos-de-centros-de-custo/deletar', 'CostCenterSubtypeController@destroy');
-
-    //métodos de pagamento
-    Route::get('/metodos-de-pagamento', 'PaymentMethodController@index');
-    Route::get('/metodos-de-pagamento/listar', 'PaymentMethodController@list');
-    Route::post('/metodos-de-pagamento/cadastrar', 'PaymentMethodController@store');
-    Route::put('/metodos-de-pagamento/editar', 'PaymentMethodController@update');
-    Route::delete('/metodos-de-pagamento/deletar', 'PaymentMethodController@destroy');
-
-    //subtipos de métodos de pagamento
-    Route::get('/subtipos-de-metodos-de-pagamento/listar', 'PaymentMethodSubtypeController@list');
-    Route::post('/subtipos-de-metodos-de-pagamento/cadastrar', 'PaymentMethodSubtypeController@store');
-    Route::delete('/subtipos-de-metodos-de-pagamento/deletar', 'PaymentMethodSubtypeController@destroy');
 
     //telefones
     Route::get('/telefones/listar', 'PhoneController@list');

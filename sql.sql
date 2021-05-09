@@ -54,7 +54,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `sales` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_specie` INT NULL,
+  `id_plantation` INT NULL,
   `id_user` INT NULL,
   `quantity` INT NULL,
   `price` DECIMAL(10,2) NOT NULL,

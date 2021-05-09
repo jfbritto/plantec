@@ -38,14 +38,14 @@ class SpecieService
 
             DB::beginTransaction();
 
-            $courts = DB::table('species')
+            $result = DB::table('species')
                         ->where('id', $data['id'])
                         ->update(['name' => $data['name'],
                                 'description' => $data['description']]);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $courts];
+            $response = ['status' => 'success', 'data' => $result];
 
         }catch(Exception $e){
             DB::rollBack();
@@ -63,13 +63,13 @@ class SpecieService
 
             DB::beginTransaction();
 
-            $courts = DB::table('species')
+            $result = DB::table('species')
                         ->where('id', $data['id'])
                         ->update(['status' => $data['status']]);
 
             DB::commit();
 
-            $response = ['status' => 'success', 'data' => $courts];
+            $response = ['status' => 'success', 'data' => $result];
 
         }catch(Exception $e){
             DB::rollBack();

@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_specie')->nullable();
+            $table->integer('id_plantation')->nullable();
             $table->integer('id_user')->nullable();
             $table->integer('quantity')->nullable();
             $table->decimal('price', 10);

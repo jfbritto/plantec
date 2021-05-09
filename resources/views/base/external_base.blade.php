@@ -13,13 +13,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/home"><img id="animate" src="/img/logo.png" alt="" style="width: 200px"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <!-- @if(auth()->user())
+            @if(auth()->user())
                 <li class="nav-item active">
                     <a class="nav-link" style="color: black" href="/home">Entrar</a>
                 </li>
@@ -31,10 +31,10 @@
             
             <li class="nav-item">
                 <a class="nav-link" style="color: black" href="/reservar">Reservar Horário</a>
-            </li> -->
+            </li>
 
             </ul>
-        </div>
+        </div> -->
     </nav>
 
     {{-- Content Header --}}

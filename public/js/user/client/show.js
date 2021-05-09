@@ -128,6 +128,60 @@ $(document).ready(function () {
         ]);
     }
 
+    // LISTAR VENDAS
+    function loadSales()
+    {
+        Swal.queue([
+            {
+                title: "Carregando...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                    $.get(window.location.origin + "/vendas/listar-por-cliente", {
+                        id_client:$("#id_usr").val()
+                    })
+                        .then(function (data) {
+                            if (data.status == "success") {
+
+                                Swal.close();
+                                $("#list-sales").html(``);
+
+                                if(data.data.length > 0){
+                                    
+                                    data.data.forEach(item => {
+
+                                        $("#list-sales").append(`
+                                            <tr>
+                                                <td class="align-middle">${item.specie_name}</td>
+                                                <td class="align-middle">${item.quantity}</td>
+                                                <td class="align-middle">R$ ${moneyFormat(item.price)}</td>
+                                                <td class="align-middle" style="text-align: right">
+                                                    <a title="Deletar" data-id="${item.id}" data-id_plantation="${item.id_plantation}" href="#" class="btn btn-danger delete-sale"><i class="fas fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        `);       
+                                    });
+
+                                }else{
+
+                                    $("#list-sales").append(`
+                                        <tr>
+                                            <td class="align-middle text-center" colspan="6">Nenhuma venda cadastrada</td>
+                                        </tr>
+                                    `);  
+                                }
+
+                            } else if (data.status == "error") {
+                                showError(data.message)
+                            }
+                        })
+                        .catch();
+                },
+            },
+        ]);
+    }
+
     
     // EDITAR CLIENTE
     $("#formEditClient").submit(function (e) {
@@ -281,6 +335,8 @@ $(document).ready(function () {
         loadClient();
         // listar telefones
         loadPhones();
+        // listar vendas
+        loadSales();
     }
 
 });

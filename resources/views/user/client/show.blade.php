@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/clientes"><i class="fas fa-user-graduate"></i> &nbsp;Clientes</a></li>
+                    <li class="breadcrumb-item"><a href="/clientes"><i class="fas fa-users"></i> &nbsp;Clientes</a></li>
                     <li class="breadcrumb-item active name_user"></li>
                 </ol>
             </div>
@@ -129,10 +129,13 @@
                         <table class="table table-striped table-valign-middle table-hover table-sm">
                             <thead>
                                 <tr>
+                                    <th>Espécie</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody id="list"></tbody>
+                            <tbody id="list-sales"></tbody>
                         </table>
                     </div>
                 </div>

@@ -4,7 +4,7 @@
     <link rel="icon" href="/img/tennis-ball.png" type="image/png">
 @stop
 
-@section('title', 'Planos')
+@section('title', 'Home')
 
 @section('content_header')
     <h1><i class="fas fa-home"></i> &nbsp;Home</h1>
