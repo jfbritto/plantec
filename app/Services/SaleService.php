@@ -82,6 +82,30 @@ class SaleService
         return $response;
     }
 
+    public function receive(array $data)
+    {
+        $response = [];
+
+        try{
+
+            DB::beginTransaction();
+
+            $result = DB::table('sales')
+                        ->where('id', $data['id'])
+                        ->update(['status' => $data['status']]);
+
+            DB::commit();
+
+            $response = ['status' => 'success', 'data' => $result];
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $response = ['status' => 'error', 'data' => $e->getMessage()];
+        }
+
+        return $response;
+    }
+
     public function list()
     {
         $response = [];

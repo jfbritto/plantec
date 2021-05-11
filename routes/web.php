@@ -49,6 +49,7 @@ Route::group(['middleware' => ['admin']], function(){
     Route::get('/vendas/listar-por-cliente', 'SaleController@listByClient');
     Route::post('/vendas/cadastrar', 'SaleController@store');
     Route::put('/vendas/editar', 'SaleController@update');
+    Route::put('/vendas/receber', 'SaleController@receive');
     Route::delete('/vendas/deletar', 'SaleController@destroy');
 
 
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['admin']], function(){
     Route::get('/despesas', 'ExpenseController@index');
     Route::get('/despesas/listar', 'ExpenseController@list');
     Route::post('/despesas/cadastrar', 'ExpenseController@store');
+    Route::put('/despesas/pagar', 'ExpenseController@pay');
     Route::delete('/despesas/deletar', 'ExpenseController@destroy');
 
     //centro de custo

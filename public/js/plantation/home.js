@@ -387,7 +387,9 @@ $(document).ready(function () {
                                                 <td class="align-middle">${item.client_name}</td>
                                                 <td class="align-middle">${item.quantity}</td>
                                                 <td class="align-middle">R$ ${moneyFormat(item.price)}</td>
+                                                <td class="align-middle">${item.status=='A'?`<span class="badge badge-warning">Pendente</span>`:`<span class="badge badge-success">Efetuado</span>`}</td>
                                                 <td class="align-middle" style="text-align: right">
+                                                    ${item.status=='A'?`<a title="Informar pagamento" data-id="${item.id}" data-id_plantation="${item.id_plantation}" href="#" class="btn btn-success pay-sale"><i class="fas fa-comment-dollar"></i></a>`:''}
                                                     <a title="Deletar" data-id="${item.id}" data-id_plantation="${item.id_plantation}" href="#" class="btn btn-danger delete-sale"><i class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
@@ -447,6 +449,54 @@ $(document).ready(function () {
                                         if (data.status == "success") {
                                                         
                                             showSuccess("Deletado com sucesso!", null, loadSales, id_plantation)
+                                        } else if (data.status == "error") {
+                                            showError(data.message)
+                                        }
+                                    })
+                                    .catch();
+                            },
+                        },
+                    ]);
+
+                }
+            })
+
+    });
+
+    // RECEBER VENDA
+    $("#list-sales").on("click", ".pay-sale", function(){
+        
+        let id = $(this).data('id');
+        let id_plantation = $(this).data('id_plantation');
+
+        Swal.fire({
+            title: 'Atenção!',
+            text: "Confirma que o valor foi recebido?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Sim',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.value) {
+
+                    Swal.queue([
+                        {
+                            title: "Carregando...",
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            onOpen: () => {
+                                Swal.showLoading();
+                                $.ajax({
+                                    url: window.location.origin + "/vendas/receber",
+                                    type: 'PUT',
+                                    data: {id}
+                                })
+                                    .then(function (data) {
+                                        if (data.status == "success") {
+                                                        
+                                            showSuccess("Recebimento efetuado com sucesso!", null, loadSales, id_plantation)
                                         } else if (data.status == "error") {
                                             showError(data.message)
                                         }

@@ -174,6 +174,7 @@
                                 <th>Cliente</th>
                                 <th>Quantidade</th>
                                 <th>Valor</th>
+                                <th>Pagamento</th>
                                 <th></th>
                             </tr>
                         </thead>

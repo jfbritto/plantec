@@ -78,6 +78,21 @@ class SaleController extends Controller
         return response()->json(['status'=>'error', 'message'=>$response['data']], 400);    
     }
     
+    public function receive(Request $request) 
+    {
+        $data = [
+            'id' => trim($request->id),
+            'status' => 'P'
+        ];
+
+        $response = $this->saleService->receive($data);
+
+        if($response['status'] == 'success')
+            return response()->json(['status'=>'success'], 200);
+
+        return response()->json(['status'=>'error', 'message'=>$response['data']], 400);    
+    }
+    
     public function list() 
     {
         $response = $this->saleService->list();
