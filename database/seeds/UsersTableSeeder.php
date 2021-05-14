@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             ),
             1 => 
             array (
-                'id' => 1,
+                'id' => 2,
                 'id_company' => 1,
                 'name' => 'João Filipi',
                 'email' => 'jf.britto@hotmail.com',
@@ -59,9 +59,6 @@ class UsersTableSeeder extends Seeder
                 'neighborhood' => NULL,
                 'uf' => NULL,
                 'zip_code' => NULL,
-                'start_date' => NULL,
-                'health_plan' => NULL,
-                'how_met' => NULL,
                 'created_at' => '2021-04-13 23:38:51',
                 'updated_at' => '2021-04-13 23:38:51',
             ),
