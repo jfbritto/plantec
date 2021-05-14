@@ -47,7 +47,7 @@ $(document).ready(function () {
 
                                     $("#list").append(`
                                         <tr>
-                                            <td class="align-middle text-center" colspan="6">Nenhuma venda cadastrada</td>
+                                            <td class="align-middle text-center" colspan="7">Nenhuma venda cadastrada</td>
                                         </tr>
                                     `);  
                                 }
